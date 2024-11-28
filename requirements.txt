@@ -8,5 +8,6 @@ mlflow
 fastapi 
 uvicorn
 pydantic
+streamlit
 
 -e .
