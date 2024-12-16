@@ -14,7 +14,7 @@ def get_requirements(find_path:str)->List[str]:
         
 
 setup(
-name='Customer-Segmentation-with-Scalable-Kubernetes-Deployment-and-CI-CD',
+name='Real-Time-Customer-Segmentation-for-targeted-Marketing-Strategies',
 version='0.0.1',
 author='Supercreativeneets',
 author_email='neetikayadav@gmail.com',

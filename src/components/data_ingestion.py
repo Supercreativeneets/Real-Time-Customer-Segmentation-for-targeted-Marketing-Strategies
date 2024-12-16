@@ -20,7 +20,7 @@ class DataIngestion:
     def start_data_ingestion(self):
         logging.info("Starting to load the dataset")
         try:
-            df = pd.read_csv('/Users/neeti/Documents/Customer-Segmentation-Kubernetes-CI-CD/notebook/data/Customer Data.csv')
+            df = pd.read_csv('/Users/neetu/Real-Time-Customer-Segmentation-for-targeted-Marketing-Strategies/notebook/data/Customer Data.csv')
 
             os.makedirs(os.path.dirname(self.ingestion_config.data_path), exist_ok=True)
             df.to_csv(self.ingestion_config.data_path, index=False, header=True)
