@@ -8,6 +8,14 @@ from src.logger import logging
 from src.pipeline.pred_pipeline import Pred_Pipeline, InputData
 import plotly.io as pio
 
+# Recommendations dictionary
+CLUSTER_RECOMMENDATIONS = {
+    0: "This group is mostly doing installments purchases, but monthly average purchases is low. They are paying dues on time and maintaining good credit score. We can give them rewards points on purchases using credit card. This will encourage them to make more purchases. Also, consider increasing their credit limit.",
+    1: "They have poor credit score and taking only cash on advance. We can target them by providing less interest rate on purchase and cash advances. Through reducing interest we will put ourselves in a position over our competitors since we have our users' best interest. Again we hope to improve retention and frequency with this strategy.",
+    2: "They are potential target customers who are paying dues and doing purchases and maintaining comparatively good credit score. The best marketing strategy for this cluster is to give credit points for every time they make a transaction using credit card. These points would incentivize the customers to be loyal to the bank and reduce churn rates.",
+    3: "This group is using the card for just one-off purchases and some cash advance transactions. We can give them a higher One-Off credit limit to keep them using One-Off Purchases.",
+}
+
 # Streamlit app definition
 def main():
     st.title("Customer Segmentation Prediction")
@@ -80,7 +88,12 @@ def main():
             pca_fitted_data, predicted_cluster = pred_pipeline.predict(input_df)
 
             # Display the predicted cluster
-            st.success(f"The customer belongs to Cluster: {predicted_cluster[0]}")
+            cluster = predicted_cluster[0]
+            st.success(f"The customer belongs to Cluster: {cluster}")
+
+            # Display the corresponding recommendation
+            recommendation = CLUSTER_RECOMMENDATIONS.get(cluster, "No recommendation available for this cluster.")
+            st.info(f"Recommendation: {recommendation}")
 
             # Generate and display the cluster visualization
             pca_data_path = "artifacts/cluster_prediction.html"
