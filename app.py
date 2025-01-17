@@ -32,23 +32,23 @@ def main():
     with st.sidebar.form(key="input_form"):
         # User inputs
         CUST_ID = st.text_input("Customer ID")
-        BALANCE = st.number_input("Balance", value=0.0, format="%.2f")
-        BALANCE_FREQUENCY = st.number_input("Balance Frequency", value=0.0, format="%.2f")
-        PURCHASES = st.number_input("Purchases", value=0.0, format="%.2f")
-        ONEOFF_PURCHASES = st.number_input("One-off Purchases", value=0.0, format="%.2f")
-        INSTALLMENTS_PURCHASES = st.number_input("Installment Purchases", value=0.0, format="%.2f")
-        CASH_ADVANCE = st.number_input("Cash Advance", value=0.0, format="%.2f")
-        PURCHASES_FREQUENCY = st.number_input("Purchases Frequency", value=0.0, format="%.2f")
-        ONEOFF_PURCHASES_FREQUENCY = st.number_input("One-off Purchases Frequency", value=0.0, format="%.2f")
-        PURCHASES_INSTALLMENTS_FREQUENCY = st.number_input("Purchases Installments Frequency", value=0.0, format="%.2f")
-        CASH_ADVANCE_FREQUENCY = st.number_input("Cash Advance Frequency", value=0.0, format="%.2f")
-        CASH_ADVANCE_TRX = st.number_input("Cash Advance Transactions", value=0, format="%d")
-        PURCHASES_TRX = st.number_input("Purchases Transactions", value=0, format="%d")
-        CREDIT_LIMIT = st.number_input("Credit Limit", value=0.0, format="%.2f")
-        PAYMENTS = st.number_input("Payments", value=0.0, format="%.2f")
-        MINIMUM_PAYMENTS = st.number_input("Minimum Payments", value=0.0, format="%.2f")
-        PRC_FULL_PAYMENT = st.number_input("Percentage Full Payment", value=0.0, format="%.2f")
-        TENURE = st.number_input("Tenure", value=0, format="%d")
+        BALANCE = st.slider("Balance", min_value=0.0, max_value=50000.0, value=5000.0, step=1.0)
+        BALANCE_FREQUENCY = st.slider("Balance Frequency", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
+        PURCHASES = st.slider("Purchases", min_value=0.0, max_value=50000.0, value=1000.0, step=1.0)
+        ONEOFF_PURCHASES = st.slider("One-off Purchases", min_value=0.0, max_value=50000.0, value=500.0, step=1.0)
+        INSTALLMENTS_PURCHASES = st.slider("Installment Purchases", min_value=0.0, max_value=25000.0, value=300.0, step=1.0)
+        CASH_ADVANCE = st.slider("Cash Advance", min_value=0.0, max_value=50000.0, value=2000.0, step=1.0)
+        PURCHASES_FREQUENCY = st.slider("Purchases Frequency", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
+        ONEOFF_PURCHASES_FREQUENCY = st.slider("One-off Purchases Frequency", min_value=0.0, max_value=1.0, value=  0.2, step=0.01)
+        PURCHASES_INSTALLMENTS_FREQUENCY = st.slider("Purchases Installments Frequency", min_value=0.0, max_value=1.0, value=0.4, step=0.01)
+        CASH_ADVANCE_FREQUENCY = st.slider("Cash Advance Frequency", min_value=0.0, max_value=1.0, value=0.3, step=0.01)
+        CASH_ADVANCE_TRX = st.slider("Cash Advance Transactions", min_value=0, max_value=500, value=10, step=1)
+        PURCHASES_TRX = st.slider("Purchases Transactions", min_value=0, max_value=500, value=20, step=1)
+        CREDIT_LIMIT = st.slider("Credit Limit", min_value=50.0, max_value=50000.0, value=10000.0, step=50.0)
+        PAYMENTS = st.slider("Payments", min_value=0.0, max_value=100000.0, value=5000.0, step=25.0)
+        MINIMUM_PAYMENTS = st.slider("Minimum Payments", min_value=0.0, max_value=100000.0, value=1000.0, step=50.0)
+        PRC_FULL_PAYMENT = st.slider("Percentage Full Payment", min_value=0.0, max_value=1.0, value=0.3, step=0.01)
+        TENURE = st.slider("Tenure", min_value=0, max_value=12, value=6, step=1)
 
         # Submit button
         submitted = st.form_submit_button("Predict Cluster")
@@ -98,9 +98,9 @@ def main():
             # Generate and display the cluster visualization
             pca_data_path = "artifacts/cluster_prediction.html"
             pred_pipeline.plot_cluster_highlight(input_df)
-            with open(pca_data_path, "r", encoding="utf-8") as f:  # Explicitly use UTF-8 encoding)
+            with open(pca_data_path, "r",encoding="utf-8") as f:  # Explicitly use UTF-8 encoding)
                 cluster_html = f.read()
-            st.components.v1.html(cluster_html, height=700)
+            st.components.v1.html(cluster_html, height=900)
 
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")

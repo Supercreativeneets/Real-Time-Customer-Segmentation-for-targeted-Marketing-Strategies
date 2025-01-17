@@ -53,25 +53,38 @@ class Pred_Pipeline:
             # The data contains the PCA-transformed points and their respective cluster labels
             cluster_labels_path = os.path.join('artifacts', 'cluster_labels.csv')
             cluster_labels_df = pd.read_csv(cluster_labels_path, header=None)
-            cluster_labels = cluster_labels_df.values
+            cluster_labels = cluster_labels_df.values.flatten()  # Flatten to 1D array
 
             # Extract the first three PCA components
             x, y, z = pca_data[:,:3].T
 
-            # Extract the cluster label data in 1-dimension
-            cluster_labels= cluster_labels.reshape(-1)
-
-            # Create a 3D scatter plot using the PCA component for all points, color-coded by cluster labels
-            fig = px.scatter_3d(
-                x= x,
-                y= y,
-                z= z,
-                color=cluster_labels,
-                labels={'cluster': 'Cluster'}
-            )
-
+            # Predict the cluster for the given input data
             pca_fitted_data, predicted_cluster = self.predict(df)
+            predicted_cluster_label = predicted_cluster[0]
 
+            # Create a color array where all clusters are gray by default
+            colors = ['gray'] * len(cluster_labels)
+
+            # Highlight the predicted cluster with a unique color
+            for i, cluster_label in enumerate(cluster_labels):
+                if cluster_label == predicted_cluster_label:
+                    colors[i] = 'blue'  # Highlight the predicted cluster in blue
+
+            # Create a 3D scatter plot for all points
+            fig = go.Figure()
+
+            # Add all points with color coding
+            fig.add_trace(
+                go.Scatter3d(
+                x=x,
+                y=y,
+                z=z,
+                mode='markers',
+                marker=dict(size=5, color=colors),  # Apply the colors array
+                name='Clusters'
+                )
+            )
+            
             # Highlight the predicted point in red with a diamond symbol
             fig.add_trace(
                 go.Scatter3d(
