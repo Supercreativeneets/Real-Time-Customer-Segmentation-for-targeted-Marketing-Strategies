@@ -16,7 +16,7 @@ env:
   GKE_ZONE: 'us-central1-c'
   DEPLOYMENT_NAME: 'cust-seg-streamlit'
   REPOSITORY: 'my-docker-repo'
-  IMAGE: 'static-site'# TODO: update to your workload identity provider
+  IMAGE: 'cust-seg-streamlit'
 
 jobs:
   build-deploy:
