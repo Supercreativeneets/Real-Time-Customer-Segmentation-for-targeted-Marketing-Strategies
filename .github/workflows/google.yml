@@ -1,0 +1,68 @@
+# This workflow will build a docker container, publish it to Google Container
+# Registry, and deploy it to GKE when there is a push to the "main"
+# branch.
+
+name: 'Build and Deploy to GKE'
+
+on:
+  push:
+    branches:
+      - '"main"'
+
+env:
+  PROJECT_ID: 'cust-seg-streamlit-gcp'
+  GAR_LOCATION: 'us-central1'
+  GKE_CLUSTER: 'cluster-1'
+  GKE_ZONE: 'us-central1-c'
+  DEPLOYMENT_NAME: 'cust-seg-streamlit'
+  REPOSITORY: 'my-docker-repo'
+  IMAGE: 'static-site'# TODO: update to your workload identity provider
+
+jobs:
+  build-deploy:
+    name: 'Build and Deploy to GKE'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      # Step 2: Authenticate with Google Cloud
+      - name: 'Authenticate with Google Cloud'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}'
+
+      # Step 3: Configure Docker to authenticate with Artifact Registry
+      - name: 'Configure Docker'
+        run: |
+          gcloud auth configure-docker ${GAR_LOCATION}-docker.pkg.dev
+
+      # Step 4: Build and push the Docker image
+      - name: 'Build and Push Docker Image'
+        run: |
+          DOCKER_IMAGE="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+          echo "Building Docker image: $DOCKER_IMAGE"
+          docker build -t $DOCKER_IMAGE .
+          docker push $DOCKER_IMAGE
+
+      # Step 5: Configure GKE credentials
+      - name: 'Configure GKE Credentials'
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+
+      # Step 6: Apply Kubernetes Deployment (Optional: First-Time Setup)
+      - name: 'Apply Kubernetes Deployment YAML'
+        run: |
+          kubectl apply -f k8s/k8s-deployment.yaml
+
+      # Step 7: Update Deployment with New Image
+      - name: 'Update Kubernetes Deployment Image'
+        run: |
+          DOCKER_IMAGE="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+          echo "Updating deployment ${DEPLOYMENT_NAME} with image $DOCKER_IMAGE"
+          kubectl set image deployment/${DEPLOYMENT_NAME} ${IMAGE}=$DOCKER_IMAGE
+          kubectl rollout status deployment/${DEPLOYMENT_NAME}
