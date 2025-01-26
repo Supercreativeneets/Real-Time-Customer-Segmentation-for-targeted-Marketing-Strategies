@@ -98,7 +98,7 @@ def main():
             # Generate and display the cluster visualization
             pca_data_path = "artifacts/cluster_prediction.html"
             pred_pipeline.plot_cluster_highlight(input_df)
-            with open(pca_data_path, "r",encoding="utf-8") as f:  # Explicitly use UTF-8 encoding)
+            with open(pca_data_path, "r",encoding="utf-8") as f:  # Explicitly use UTF-8 encoding
                 cluster_html = f.read()
             st.components.v1.html(cluster_html, height=900)
 
