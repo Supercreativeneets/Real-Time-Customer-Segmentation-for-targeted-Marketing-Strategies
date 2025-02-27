@@ -1,12 +1,12 @@
 # **Scalable ML Model with Real-Time Inference Endpoint for Customer Segmentation**
 ![End to end project workflow](Slide1.jpg)
-## Overview:
+## Overview
 
-This repository showcases the development of a scalable machine learning model for customer segmentation, capable of handling real-time inference through a REST API. The project tackles the business challenge of segmenting customers using unstructured data to create tailored marketing strategies. The solution incorporates complex workflows such as data ingestion, transformation, model training, and deployment, leveraging modern tools like FastAPI, Docker, Kubernetes, and GitHub Actions.
+This repository showcases the development of a scalable machine learning model for customer segmentation, capable of handling real-time inference using streamlit. The project tackles the business challenge of segmenting customers using unstructured data to create tailored marketing strategies. The solution incorporates complex workflows such as data ingestion, transformation, model training, and deployment, leveraging modern tools like Docker, Kubernetes, and GitHub Actions.
 
 ## Business Problem
 
-Customer segmentation is vital for businesses to understand and address the diverse needs of their customer base. By grouping customers based on their behaviors and characteristics, companies can tailor marketing efforts, enhancing customer engagement and retention. This project develops a machine learning model that segments customers and provides real-time predictions via a REST API.
+Customer segmentation is vital for businesses to understand and address the diverse needs of their customer base. By grouping customers based on their behaviors and characteristics, companies can tailor marketing efforts, enhancing customer engagement and retention. This project develops a machine learning model that segments customers and provides real-time predictions via streamlit app.
 
 ## Workflow
 
@@ -14,12 +14,12 @@ The project workflow includes several interconnected components:
 
 * **1. Data Ingestion:** Load and prepare the customer dataset for analysis.
 * **2. Data Transformation:** Clean and preprocess the data to make it suitable for model training.
-* **3. Model Training:** Utilize the K-Means clustering algorithm to segment customers and determine the optimal number of clusters using the Elbow Method.
-* **4. Real-Time Inference with FastAPI:** Develop a REST API using FastAPI to serve the model and provide real-time predictions.
-* **5. Containerization with Docker:** Use Docker to containerize the FastAPI application, ensuring consistent deployment across various environments.
-* **6. Deployment with Kubernetes:** Deploy the containerized application to a Kubernetes cluster for scalability and high availability.
+* **3. Model Training:** Utilize PCA for dimensionality reduction and K-Means clustering algorithm to segment customers and determine the optimal number of clusters using Elbow Method with Silhouette validation.
+* **4. Real-Time Inference with Streamlit:** Develop a streamlit app to provide real-time predictions.
+* **5. Containerization with Docker:** Use Docker to containerize the streamlit application, ensuring consistent deployment across various environments.
+* **6. Deployment with Kubernetes:** Deploy the containerized application to a Google Kubernetes Engine (GKE)cluster for scalability and high availability.
 * **7. CI/CD Pipeline with GitHub Actions:** Automate the build and deployment process using GitHub Actions, enabling continuous integration and continuous deployment.
-* **8. Testing:** Verify the model's performance and accuracy using Postman for API endpoint testing and a Gradio interface hosted on Hugging Face Spaces for user-friendly testing.
+
 
 ## Project Structure
 
