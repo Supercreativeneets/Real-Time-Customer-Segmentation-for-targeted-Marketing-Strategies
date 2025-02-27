@@ -52,6 +52,8 @@ The project workflow includes several interconnected components:
 * **Google Cloud Platform:** Used Google Artifacts Registry for storing Docker images and Google Kubernetes Service (GKE) for hosting the application.
 
 * **Streamlit:** Developed a user-friendly interface to test the model in real-time.
+![streamlit app](GKE-deploy.png)
+![streamlit app 2](GKE-deploy2.png)
 
 ## Conclusion
 
