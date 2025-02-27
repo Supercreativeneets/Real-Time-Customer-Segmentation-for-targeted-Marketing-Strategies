@@ -1,5 +1,5 @@
 # **Scalable ML Model with Real-Time Inference Endpoint for Customer Segmentation**
-![End to end project workflow](Slide1.jpg)
+![End to end workflow](Slide1-1.jpg)
 ## Overview
 
 This repository showcases the development of a scalable machine learning model for customer segmentation, capable of handling real-time inference using streamlit. The project tackles the business challenge of segmenting customers using unstructured data to create tailored marketing strategies. The solution incorporates complex workflows such as data ingestion, transformation, model training, and deployment, leveraging modern tools like Docker, Kubernetes, and GitHub Actions.
