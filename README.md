@@ -26,19 +26,33 @@ The project workflow includes several interconnected components:
 ```
 .
 ├── .github/workflows       # GitHub Actions workflows
-│   └── deploy.yml
+│   └── google.yaml         # Deployment configuration
 ├── artifacts               # Directory for storing artifacts like models
+├── k8s                     
+    └── k8s-deployment.yaml # Kubernetes service configuration
 ├── src                     # Source code for the application
 │   ├── components          # Data ingestion, transformation, and model training
 │   ├── pipeline            # Prediction pipeline
+│   ├── exception           # exception handling
+│   ├── logger              # logging function
 │   ├── utils               # Utility functions
-├── Dockerfile              # Docker configuration file
-├── deployment.yaml         # Kubernetes deployment configuration
-├── service.yaml            # Kubernetes service configuration
+├── Dockerfile              # Docker configuration file       
 ├── requirements.txt        # Python dependencies
-├── main.py                 # FastAPI application
+├── app.py                  # Streamlit application
 └── README.md               # Project description
 ```
 ## Key Technologies
 
 * **Docker:** Containerization tool for creating consistent deployment environments.
+![Building docker image](GCP-docker.png)
+* **Kubernetes:** Orchestrates deployment, scaling, and management of containerized applications.
+
+* **GitHub Actions:** Automates the CI/CD pipeline for continuous integration and deployment.
+
+* **Google Cloud Platform:** Used Google Artifacts Registry for storing Docker images and Google Kubernetes Service (GKE) for hosting the application.
+
+* **Streamlit:** Developed a user-friendly interface to test the model in real-time.
+
+## Conclusion
+
+This project provides an end-to-end solution for scalable customer segmentation with real-time inference capabilities. By leveraging modern tools and technologies, the model is robust, scalable, and easy to deploy, helping businesses tailor their marketing strategies effectively.
