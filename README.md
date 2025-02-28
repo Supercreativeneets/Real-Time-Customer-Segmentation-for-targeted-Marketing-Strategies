@@ -1,5 +1,6 @@
 # **Scalable ML Model with Real-Time Inference Endpoint for Customer Segmentation**
-![End to end workflow](Slide1-1.jpg)
+![Slide1](https://github.com/user-attachments/assets/400014da-f27d-4a55-b9bf-40e24e5cca92)
+
 ## Overview
 
 This repository showcases the development of a scalable machine learning model for customer segmentation, capable of handling real-time inference using streamlit. The project tackles the business challenge of segmenting customers using unstructured data to create tailored marketing strategies. The solution incorporates complex workflows such as data ingestion, transformation, model training, and deployment, leveraging modern tools like Docker, Kubernetes, and GitHub Actions.
@@ -44,16 +45,18 @@ The project workflow includes several interconnected components:
 ## Key Technologies
 
 * **Docker:** Containerization tool for creating consistent deployment environments.
-![Building docker image](GCP-docker.png)
+<img width="954" alt="GCP-docker" src="https://github.com/user-attachments/assets/428de989-4b4f-4536-94bd-397b49d20408" />
+
 * **Kubernetes:** Orchestrates deployment, scaling, and management of containerized applications.
 
 * **GitHub Actions:** Automates the CI/CD pipeline for continuous integration and deployment.
 
 * **Google Cloud Platform:** Used Google Artifacts Registry for storing Docker images and Google Kubernetes Service (GKE) for hosting the application.
-![gke cluster](GKE-cluster.png)
+<img width="956" alt="GKE-cluster" src="https://github.com/user-attachments/assets/c1c252ea-d75b-4202-823d-136ce40ed521" />
+
 * **Streamlit:** Developed a user-friendly interface to test the model in real-time.
-![streamlit app](GKE-deploy.png)
-![streamlit app 2](GKE-deploy2.png)
+<img width="954" alt="GKE-deploy" src="https://github.com/user-attachments/assets/93c26abe-9f56-4bdf-a1b0-bdc8ff23daf3" />
+<img width="952" alt="GKE-deploy2" src="https://github.com/user-attachments/assets/bcf5c770-6c6a-4c7c-8601-8b766a6ccb3f" />
 
 ## Conclusion
 
